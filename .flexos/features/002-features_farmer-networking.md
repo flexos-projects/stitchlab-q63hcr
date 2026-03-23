@@ -1,6 +1,6 @@
 ---
 id: 002-features_farmer-networking
-type: features
+type: feature
 subtype:
 title: "Core Features: Farmer Networking"
 description: "Essential features for connecting farmers for social and professional purposes."
@@ -12,6 +12,7 @@ relatesTo:
 createdAt: "2024-07-30T12:05:00Z"
 updatedAt: "2024-07-30T12:05:00Z"
 ---
+
 
 # Core Features: Farmer Networking
 
