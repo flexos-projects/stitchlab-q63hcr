@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/pages/:path*", "destination": "/pages/:path*" },
+    { "source": "/shared/:path*", "destination": "/shared/:path*" },
+    { "source": "/placeholder", "destination": "/placeholder.html" },
+    { "source": "/", "destination": "/index.html" }
+  ]
+}

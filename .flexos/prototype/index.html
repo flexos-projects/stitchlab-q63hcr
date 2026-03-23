@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Project Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./shared/tokens.css">
+  <link rel="stylesheet" href="./shared/components.css">
+  <style>
+    /* Portal-specific layout (not in core components — this is a one-off page) */
+    .portal-hero {
+      padding: var(--space-24) var(--space-4) var(--space-16);
+      text-align: center;
+    }
+    .portal-hero-title {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+      margin-bottom: var(--space-4);
+    }
+    .portal-hero-tagline {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      max-width: 640px;
+      margin: 0 auto var(--space-8);
+    }
+    .portal-hero-actions {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .portal-hero-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-primary);
+      background: var(--color-primary-subtle);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      padding: var(--space-1) var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+
+    /* Feature cards */
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-primary-muted);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-4);
+      color: var(--color-primary);
+    }
+    .feature-title {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-2);
+    }
+    .feature-desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* Stats row */
+    .portal-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      margin-top: var(--space-8);
+    }
+    .portal-stat { text-align: center; }
+    .portal-stat-value {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+    }
+    .portal-stat-label {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: var(--space-1);
+    }
+
+    /* Sitemap items */
+    .sitemap-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    .sitemap-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--color-primary-muted);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-sm);
+      flex-shrink: 0;
+      color: var(--color-primary);
+    }
+    .sitemap-info { flex: 1; min-width: 0; }
+    .sitemap-name { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); }
+    .sitemap-path { font-size: var(--font-size-xs); color: var(--color-text-muted); font-family: var(--font-mono); margin-top: 2px; }
+
+    /* Team */
+    .team-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+    }
+    .team-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary-muted);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      font-size: var(--font-size-lg);
+      flex-shrink: 0;
+    }
+    .team-name { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); }
+    .team-role { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+
+    /* Color swatches */
+    .swatches { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .swatch { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); cursor: pointer; transition: transform var(--transition-fast); }
+    .swatch:hover { transform: scale(1.05); }
+    .swatch-color { width: 56px; height: 56px; border-radius: var(--radius-md); border: 1px solid var(--color-border); }
+    .swatch-name { font-family: var(--font-mono); font-size: 9px; color: var(--color-text-muted); max-width: 64px; text-align: center; word-break: break-all; }
+
+    /* Type rows */
+    .type-row { display: flex; align-items: baseline; gap: var(--space-4); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
+    .type-label { font-family: var(--font-mono); font-size: var(--font-size-xs); color: var(--color-text-muted); min-width: 100px; flex-shrink: 0; }
+    .type-sample { color: var(--color-text); }
+
+    /* Footer */
+    .portal-footer {
+      text-align: center;
+      padding: var(--space-8) var(--space-4);
+      border-top: 1px solid var(--color-border);
+    }
+    .portal-footer-text { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+    .portal-footer-text a { color: var(--color-primary); }
+    .portal-footer-version { font-family: var(--font-mono); font-size: 10px; color: var(--color-text-muted); margin-top: var(--space-1); }
+
+    /* Toast */
+    .portal-toast {
+      position: fixed;
+      bottom: var(--space-6);
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--color-surface-raised);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      opacity: 0;
+      transition: all var(--transition-base);
+      pointer-events: none;
+      z-index: var(--z-toast);
+    }
+    .portal-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Spacing helpers */
+    .token-group { margin-bottom: var(--space-8); }
+    .token-group-title { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); }
+
+    @media (max-width: 640px) {
+      .portal-hero-title { font-size: var(--font-size-3xl); }
+      .portal-hero { padding: var(--space-12) var(--space-4) var(--space-8); }
+      .portal-stats { gap: var(--space-4); }
+      .type-row { flex-direction: column; gap: var(--space-1); }
+      .type-label { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="navbar-brand" id="nav-brand">Project</a>
+    <div class="navbar-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">&#9790;</button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="portal-hero">
+      <div class="portal-hero-badge" id="hero-badge">v0.1.0</div>
+      <h1 class="portal-hero-title" id="hero-title">Project Name</h1>
+      <p class="portal-hero-tagline" id="hero-tagline">A short tagline describing what this product does.</p>
+      <div class="portal-hero-actions">
+        <a href="#design" class="btn btn-primary">Design System</a>
+        <a href="#pages" class="btn btn-secondary">Pages</a>
+      </div>
+      <div class="portal-stats" id="stats-row"></div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">What we're building</h2>
+      <p class="section-subtitle" id="vision-desc"></p>
+      <div class="grid grid-3" id="features-grid"></div>
+    </section>
+
+    <!-- Pages / Sitemap -->
+    <section class="section" id="pages">
+      <div class="section-label">Pages</div>
+      <h2 class="section-title">Prototype Pages</h2>
+      <p class="section-subtitle">Click to preview any page.</p>
+      <div class="grid grid-2" id="sitemap-grid"></div>
+    </section>
+
+    <!-- Design System -->
+    <section class="section" id="design">
+      <div class="section-label">Design System</div>
+      <h2 class="section-title">Tokens &amp; Patterns</h2>
+      <p class="section-subtitle">Click any swatch to copy its value.</p>
+
+      <div class="token-group">
+        <div class="token-group-title">Colors</div>
+        <div class="swatches" id="color-swatches"></div>
+      </div>
+
+      <div class="token-group">
+        <div class="token-group-title">Type Scale</div>
+        <div id="type-scale"></div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section" id="team">
+      <div class="section-label">Team</div>
+      <h2 class="section-title">Who's building this</h2>
+      <div class="grid grid-2" id="team-grid"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+      <p class="portal-footer-text">Built with <a href="https://flexos.dev" target="_blank">FlexOS</a></p>
+      <p class="portal-footer-version" id="footer-version">v0.1.0</p>
+    </footer>
+
+  </div>
+
+  <div class="portal-toast" id="toast">Copied!</div>
+
+  <script src="./shared/mock-data.js"></script>
+  <script>
+    // ── Theme ──────────────────────────────────────────────────
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    const saved = localStorage.getItem('theme');
+    if (saved) html.setAttribute('data-theme', saved);
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) html.setAttribute('data-theme', 'light');
+
+    function updateIcon() {
+      const dark = html.getAttribute('data-theme') !== 'light';
+      toggle.innerHTML = dark ? '&#9788;' : '&#9790;';
+    }
+    updateIcon();
+
+    toggle.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateIcon();
+      renderColors();
+    });
+
+    // ── Data ───────────────────────────────────────────────────
+    const d = MockData;
+    const icons = { star: '&#9733;', zap: '&#9889;', shield: '&#9740;', check: '&#10003;', heart: '&#9829;', globe: '&#9793;', home: '&#8962;' };
+
+    document.getElementById('hero-title').textContent = d.project.name;
+    document.getElementById('hero-tagline').textContent = d.project.tagline;
+    document.getElementById('hero-badge').textContent = 'v' + d.project.version;
+    document.getElementById('nav-brand').textContent = d.project.name;
+    document.getElementById('footer-version').textContent = 'v' + d.project.version;
+    document.getElementById('vision-desc').textContent = d.project.description;
+    document.title = d.project.name + ' — Portal';
+
+    // Stats
+    const statsRow = document.getElementById('stats-row');
+    d.stats.forEach(s => {
+      const el = document.createElement('div');
+      el.className = 'portal-stat';
+      el.innerHTML = '<div class="portal-stat-value">' + s.value + '</div><div class="portal-stat-label">' + s.label + '</div>';
+      statsRow.appendChild(el);
+    });
+
+    // Features
+    const featGrid = document.getElementById('features-grid');
+    d.features.forEach(f => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML =
+        '<div class="card-body">' +
+        '<div class="feature-icon">' + (icons[f.icon] || '&#9679;') + '</div>' +
+        '<div class="feature-title">' + f.title + '</div>' +
+        '<div class="feature-desc">' + f.description + '</div>' +
+        '</div>';
+      featGrid.appendChild(el);
+    });
+
+    // Team
+    const teamGrid = document.getElementById('team-grid');
+    d.team.forEach(t => {
+      const initials = t.name.split(' ').map(w => w[0]).join('').toUpperCase();
+      const el = document.createElement('div');
+      el.className = 'team-card';
+      el.innerHTML =
+        '<div class="team-avatar">' + initials + '</div>' +
+        '<div><div class="team-name">' + t.name + '</div>' +
+        '<div class="team-role">' + t.role + '</div></div>';
+      teamGrid.appendChild(el);
+    });
+
+    // Sitemap
+    const sitemapGrid = document.getElementById('sitemap-grid');
+    d.navigation.forEach(p => {
+      const el = document.createElement('a');
+      el.className = 'sitemap-item';
+      el.href = p.href;
+      el.innerHTML =
+        '<div class="sitemap-icon">' + (icons[p.icon] || '&#9679;') + '</div>' +
+        '<div class="sitemap-info"><div class="sitemap-name">' + p.label + '</div>' +
+        '<div class="sitemap-path">' + p.href + '</div></div>';
+      sitemapGrid.appendChild(el);
+    });
+
+    // ── Design System ──────────────────────────────────────────
+    const colorTokens = [
+      '--color-primary', '--color-primary-hover', '--color-primary-muted',
+      '--color-accent', '--color-accent-hover',
+      '--color-bg', '--color-surface', '--color-surface-raised',
+      '--color-border', '--color-border-strong',
+      '--color-text', '--color-text-secondary', '--color-text-muted',
+      '--color-success', '--color-warning', '--color-error', '--color-info',
+    ];
+
+    function renderColors() {
+      const container = document.getElementById('color-swatches');
+      container.innerHTML = '';
+      const styles = getComputedStyle(html);
+      colorTokens.forEach(name => {
+        const val = styles.getPropertyValue(name).trim();
+        const el = document.createElement('div');
+        el.className = 'swatch';
+        el.title = 'Click to copy: ' + name;
+        el.onclick = () => copyToClipboard(val, name);
+        el.innerHTML =
+          '<div class="swatch-color" style="background:' + val + '"></div>' +
+          '<div class="swatch-name">' + name.replace('--color-', '') + '</div>';
+        container.appendChild(el);
+      });
+    }
+    renderColors();
+
+    // Type scale
+    const typeTokens = ['--font-size-xs','--font-size-sm','--font-size-base','--font-size-lg','--font-size-xl','--font-size-2xl','--font-size-3xl','--font-size-4xl'];
+    const typeContainer = document.getElementById('type-scale');
+    typeTokens.forEach(name => {
+      const val = getComputedStyle(html).getPropertyValue(name).trim();
+      const el = document.createElement('div');
+      el.className = 'type-row';
+      el.innerHTML =
+        '<div class="type-label">' + name.replace('--font-size-', '') + ' <span style="opacity:0.5">' + val + '</span></div>' +
+        '<div class="type-sample" style="font-size:var(' + name + ')">The quick brown fox</div>';
+      typeContainer.appendChild(el);
+    });
+
+    // ── Toast ──────────────────────────────────────────────────
+    function copyToClipboard(text, label) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = 'Copied ' + label;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+      });
+    }
+  </script>
+</body>
+</html>

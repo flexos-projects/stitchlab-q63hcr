@@ -1,0 +1,247 @@
+/* ==========================================================================
+   Design Tokens
+   Generated from design/001-tokens-design-system.md
+
+   Architecture:
+     1. Open Props — sensible CSS defaults (sizing, easing, gradients)
+     2. Theme tokens — project-specific colors, type, shape
+     3. Components.css — structural classes consuming these tokens
+
+   Dark mode is DEFAULT.
+   Light mode via [data-theme="light"] on <html>.
+   ========================================================================== */
+
+@import "https://unpkg.com/open-props/open-props.min.css";
+
+
+/* ─────────────────────────────────────────────────────────────
+   SHARED TOKENS (mode-independent)
+   ───────────────────────────────────────────────────────────── */
+:root {
+
+  /* ── Typography ── */
+  --font-display:       'Inter', system-ui, sans-serif;
+  --font-body:          'Inter', system-ui, sans-serif;
+  --font-mono:          'JetBrains Mono', 'Fira Code', monospace;
+
+  --font-size-xs:       0.75rem;
+  --font-size-sm:       0.875rem;
+  --font-size-base:     1rem;
+  --font-size-lg:       1.125rem;
+  --font-size-xl:       1.25rem;
+  --font-size-2xl:      1.5rem;
+  --font-size-3xl:      2rem;
+  --font-size-4xl:      2.5rem;
+  --font-size-5xl:      3.25rem;
+
+  --font-weight-normal:   400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  --line-height-tight:    1.2;
+  --line-height-normal:   1.5;
+  --line-height-relaxed:  1.75;
+
+  /* ── Spacing ── */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+
+  /* ── Shape ── */
+  --radius-base: 8px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  20px;
+  --radius-full: 9999px;
+
+  /* ── Layout ── */
+  --content-max-width: 1200px;
+  --sidebar-width:     260px;
+  --sidebar-collapsed: 64px;
+  --header-height:     56px;
+  --bottom-nav-height: 56px;
+  --touch-target-min:  44px;
+
+  /* ── Transitions ── */
+  --transition-fast:   150ms ease-out;
+  --transition-base:   250ms ease-out;
+  --transition-slow:   400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:          cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring:       cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-Index ── */
+  --z-base:     1;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-sidebar:  300;
+  --z-overlay:  400;
+  --z-modal:    500;
+  --z-toast:    700;
+  --z-tooltip:  800;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   DARK MODE (default)
+   ───────────────────────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+
+  /* ── Primary — indigo ── */
+  --color-primary:          oklch(62% 0.18 265);
+  --color-primary-hover:    oklch(68% 0.20 265);
+  --color-primary-active:   oklch(72% 0.18 265);
+  --color-primary-muted:    oklch(62% 0.18 265 / 0.18);
+  --color-primary-subtle:   oklch(18% 0.04 265);
+
+  /* ── Accent — teal ── */
+  --color-accent:           oklch(72% 0.12 190);
+  --color-accent-hover:     oklch(78% 0.14 190);
+  --color-accent-muted:     oklch(72% 0.12 190 / 0.18);
+  --color-accent-subtle:    oklch(18% 0.04 190);
+
+  /* ── Surfaces ── */
+  --color-bg:               oklch(14% 0.005 260);
+  --color-bg-subtle:        oklch(11% 0.004 260);
+  --color-surface:          oklch(18% 0.006 260);
+  --color-surface-raised:   oklch(22% 0.008 260);
+  --color-surface-overlay:  oklch(14% 0.005 260 / 0.95);
+
+  /* ── Borders ── */
+  --color-border:           oklch(28% 0.006 260);
+  --color-border-subtle:    oklch(22% 0.005 260);
+  --color-border-strong:    oklch(38% 0.008 260);
+
+  /* ── Text ── */
+  --color-text:             oklch(93% 0.005 260);
+  --color-text-secondary:   oklch(68% 0.008 260);
+  --color-text-muted:       oklch(48% 0.006 260);
+  --color-text-on-primary:  oklch(100% 0 0);
+  --color-text-on-accent:   oklch(14% 0.02 190);
+
+  /* ── Semantic ── */
+  --color-success:          oklch(68% 0.14 155);
+  --color-success-muted:    oklch(68% 0.14 155 / 0.15);
+  --color-warning:          oklch(78% 0.14 75);
+  --color-warning-muted:    oklch(78% 0.14 75 / 0.15);
+  --color-error:            oklch(65% 0.20 25);
+  --color-error-muted:      oklch(65% 0.20 25 / 0.15);
+  --color-info:             oklch(68% 0.12 240);
+  --color-info-muted:       oklch(68% 0.12 240 / 0.15);
+
+  /* ── Shadows ── */
+  --shadow-sm:   0 1px 3px oklch(0% 0 0 / 0.30), 0 1px 2px oklch(0% 0 0 / 0.20);
+  --shadow-md:   0 4px 12px oklch(0% 0 0 / 0.35), 0 2px 4px oklch(0% 0 0 / 0.20);
+  --shadow-lg:   0 8px 24px oklch(0% 0 0 / 0.40), 0 4px 8px oklch(0% 0 0 / 0.25);
+
+  /* ── Focus ring ── */
+  --shadow-focus: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary);
+
+  color-scheme: dark;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   LIGHT MODE
+   ───────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-primary:          oklch(50% 0.18 265);
+  --color-primary-hover:    oklch(44% 0.20 265);
+  --color-primary-active:   oklch(38% 0.20 265);
+  --color-primary-muted:    oklch(50% 0.18 265 / 0.12);
+  --color-primary-subtle:   oklch(96% 0.02 265);
+
+  --color-accent:           oklch(62% 0.10 190);
+  --color-accent-hover:     oklch(55% 0.12 190);
+  --color-accent-muted:     oklch(62% 0.10 190 / 0.12);
+  --color-accent-subtle:    oklch(96% 0.02 190);
+
+  --color-bg:               oklch(98% 0.003 260);
+  --color-bg-subtle:        oklch(96% 0.005 260);
+  --color-surface:          oklch(100% 0 0);
+  --color-surface-raised:   oklch(100% 0 0);
+  --color-surface-overlay:  oklch(100% 0 0 / 0.92);
+
+  --color-border:           oklch(88% 0.008 260);
+  --color-border-subtle:    oklch(92% 0.005 260);
+  --color-border-strong:    oklch(78% 0.012 260);
+
+  --color-text:             oklch(15% 0.01 260);
+  --color-text-secondary:   oklch(40% 0.012 260);
+  --color-text-muted:       oklch(58% 0.010 260);
+  --color-text-on-primary:  oklch(100% 0 0);
+  --color-text-on-accent:   oklch(14% 0.02 190);
+
+  --color-success:          oklch(55% 0.14 155);
+  --color-success-muted:    oklch(55% 0.14 155 / 0.12);
+  --color-warning:          oklch(72% 0.14 75);
+  --color-warning-muted:    oklch(72% 0.14 75 / 0.12);
+  --color-error:            oklch(52% 0.20 25);
+  --color-error-muted:      oklch(52% 0.20 25 / 0.10);
+  --color-info:             oklch(55% 0.14 240);
+  --color-info-muted:       oklch(55% 0.14 240 / 0.10);
+
+  --shadow-sm:   0 1px 3px oklch(0% 0 0 / 0.08), 0 1px 2px oklch(0% 0 0 / 0.04);
+  --shadow-md:   0 4px 12px oklch(0% 0 0 / 0.08), 0 2px 4px oklch(0% 0 0 / 0.04);
+  --shadow-lg:   0 8px 24px oklch(0% 0 0 / 0.10), 0 4px 8px oklch(0% 0 0 / 0.06);
+
+  --shadow-focus: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary);
+
+  color-scheme: light;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   BASE RESET
+   ───────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+html {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body { min-height: 100dvh; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { color: var(--color-primary-hover); }
+
+code, pre { font-family: var(--font-mono); }
+
+img, video { display: block; max-width: 100%; }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+::selection {
+  background: var(--color-primary-muted);
+  color: var(--color-text);
+}

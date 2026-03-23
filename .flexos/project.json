@@ -1,0 +1,64 @@
+{
+  "id": null,
+  "name": "{{project_name}}",
+  "slug": "{{project_slug}}",
+  "description": "",
+  "tagline": "",
+  "tags": [],
+
+  "owner": {
+    "id": null,
+    "email": null
+  },
+
+  "status": "active",
+  "visibility": "private",
+
+  "brand": {
+    "themeColor": "{{theme_color}}",
+    "theme": "default",
+    "logo": null,
+    "favicon": null,
+    "openGraph": {
+      "title": null,
+      "description": null,
+      "image": null
+    }
+  },
+
+  "deploy": {
+    "rootMode": "prototype",
+    "prototypeEnabled": true,
+    "vercelDomain": null,
+    "customDomain": null
+  },
+
+  "github": {
+    "repoOwner": null,
+    "repoName": null,
+    "branch": "main",
+    "url": null
+  },
+
+  "vercel": {
+    "projectId": null,
+    "productionUrl": null
+  },
+
+  "techStack": {
+    "framework": "nuxt4",
+    "hosting": "vercel",
+    "database": "convex",
+    "auth": "better-auth",
+    "css": "open-props"
+  },
+
+  "settings": {
+    "defaultFocusMode": true,
+    "autoSave": true,
+    "aiModel": "gemini-flash"
+  },
+
+  "createdAt": "{{created_at}}",
+  "updatedAt": "{{created_at}}"
+}
