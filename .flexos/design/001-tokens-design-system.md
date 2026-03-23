@@ -8,6 +8,8 @@ sequence: 1
 description: "Core design tokens — colors, typography, spacing, shape, motion. Source of truth for tokens.css generation."
 tags: [design, tokens, core, oklch, open-props]
 createdAt: "{{created_at}}"
+relatesTo:
+  - "design/002-patterns-base.md"
 ---
 
 <flex_block type="instructions">
