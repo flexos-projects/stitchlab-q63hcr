@@ -1,4 +1,5 @@
 ---
+id: 002-features_farmer-networking
 type: features
 subtype:
 title: "Core Features: Farmer Networking"
