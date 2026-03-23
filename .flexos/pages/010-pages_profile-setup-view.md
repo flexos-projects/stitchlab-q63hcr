@@ -1,5 +1,5 @@
 ---
-type: pages
+type: page
 subtype: route
 title: "Profile Setup/View Page"
 description: "Allows farmers to create, view, and edit their personal and farm profiles."

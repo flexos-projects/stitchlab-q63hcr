@@ -1,5 +1,5 @@
 ---
-type: spec
+type: database
 subtype: database
 title: "Core Database Schema"
 description: "Defines the collections and fields for farmer profiles, matching, and messaging."
