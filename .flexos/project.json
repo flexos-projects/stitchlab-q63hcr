@@ -1,22 +1,19 @@
 {
-  "id": null,
-  "name": "{{project_name}}",
-  "slug": "{{project_slug}}",
+  "id": "64072ca2-fe12-4ff8-9e2e-ff3f805448cc",
+  "name": "StitchLab",
+  "slug": "stitchlab",
   "description": "",
   "tagline": "",
   "tags": [],
-
   "owner": {
-    "id": null,
-    "email": null
+    "id": "KxTyGF3u7LO7MWwGnw5wgffJnXz1",
+    "email": "jos@askflexinux2t.com"
   },
-
   "status": "active",
   "visibility": "private",
-
   "brand": {
-    "themeColor": "{{theme_color}}",
-    "theme": "default",
+    "themeColor": "#10b981",
+    "theme": "dark",
     "logo": null,
     "favicon": null,
     "openGraph": {
@@ -25,26 +22,22 @@
       "image": null
     }
   },
-
   "deploy": {
     "rootMode": "prototype",
     "prototypeEnabled": true,
-    "vercelDomain": null,
+    "vercelDomain": "stitchlab-q63hcr.flexos.site",
     "customDomain": null
   },
-
   "github": {
-    "repoOwner": null,
-    "repoName": null,
+    "repoOwner": "flexos-projects",
+    "repoName": "stitchlab-q63hcr",
     "branch": "main",
-    "url": null
+    "url": "https://github.com/flexos-projects/stitchlab-q63hcr"
   },
-
   "vercel": {
     "projectId": null,
     "productionUrl": null
   },
-
   "techStack": {
     "framework": "nuxt4",
     "hosting": "vercel",
@@ -52,13 +45,11 @@
     "auth": "better-auth",
     "css": "open-props"
   },
-
   "settings": {
     "defaultFocusMode": true,
     "autoSave": true,
     "aiModel": "gemini-flash"
   },
-
-  "createdAt": "{{created_at}}",
-  "updatedAt": "{{created_at}}"
+  "createdAt": "2026-03-23T04:19:26.274Z",
+  "updatedAt": "2026-03-23T04:19:26.274Z"
 }
