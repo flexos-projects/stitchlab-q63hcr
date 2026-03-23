@@ -1,6 +1,6 @@
 ---
-type: spec
-subtype: features
+type: features
+subtype:
 title: "Core Features: Farmer Networking"
 description: "Essential features for connecting farmers for social and professional purposes."
 sequence: 2
