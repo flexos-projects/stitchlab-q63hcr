@@ -7,6 +7,7 @@ status: active
 sequence: 3
 tags: [pages, navigation, sitemap, ux]
 createdAt: "{{created_at}}"
+updatedAt: "2024-07-30T12:20:00Z"
 ---
 
 <flex_block type="instructions">
@@ -18,4 +19,9 @@ Do not edit manually — update page specs instead.
 
 # Pages & Navigation
 
-_No page specs have been created yet. Tell me about the screens your users will see._
+## Pages
+
+- **Login Page** (`pages/011-route-login.md`)
+  User login page with email/password and social login options.
+- **Profile Setup/View Page** (`pages/010-pages_profile-setup-view.md`)
+  Allows farmers to create, view, and edit their personal and farm profiles.
